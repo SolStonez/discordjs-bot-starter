@@ -9,7 +9,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
-});
+}); 
 
 process.on('unhandledRejection', error => {
 	console.error('Unhandled promise rejection:', error);
