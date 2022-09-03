@@ -59,7 +59,7 @@ client.on('interactionCreate', async interaction => {
 					.setColor('0x0099ff')
 					.setTitle(`Legion of Sol #${id}`)
 					.setURL(`https://moonrank.app/collection/${interaction.options.getString('collection')}/${nft.mint}`)
-					.setDescription(`Rank: ${nft.rank}`)
+					.setDescription(`Rank: ${nft.rank}/9999`)
 					.setImage(nft.image)
 					.addFields(
 						{
