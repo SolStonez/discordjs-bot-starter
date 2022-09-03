@@ -20,7 +20,7 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'rank') {
+	if (commandName === 'rank') { 
 		
 		
 		await interaction.deferReply()
