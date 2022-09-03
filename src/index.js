@@ -1,7 +1,6 @@
 const { Client, GatewayIntentBits, AttachmentBuilder } = require('discord.js');
 const dotenv = require('dotenv').config()
 const axios = require('axios')
-const wait = require('node:timers/promises').setTimeout;
 
 const { EmbedBuilder } = require('discord.js');
 // Create a new client instance
