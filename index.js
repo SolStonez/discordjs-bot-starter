@@ -132,7 +132,6 @@ client.on('interactionCreate', async interaction => {
 								inline: true
 						}
 					)
-					.setTimestamp()
 					.setFooter(
 						{
 							text: 'Made by Stonez * Ranks by MoonRank',
