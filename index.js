@@ -135,7 +135,7 @@ client.on('interactionCreate', async interaction => {
 					.setTimestamp()
 					.setFooter(
 						{
-							text: 'We are Legion',
+							text: 'Made by Stonez * Ranks by MoonRank',
 							icon_url: 'https://gateway.pinata.cloud/ipfs/QmY9Bu1j2gvzmN8twJZv986fE1vc8PTVAf3xVdYzkCmjeq',
 						}
 					)
