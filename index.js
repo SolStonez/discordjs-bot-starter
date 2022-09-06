@@ -20,9 +20,9 @@ process.on('unhandledRejection', error => {
 clientDC.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	const connection = new Web3.Connection(
-		process.env.MAIN_RPC,
-		'confirmed');
+	// const connection = new Web3.Connection(
+	// 	process.env.MAIN_RPC,
+	// 	'confirmed');
 
 	const { commandName } = interaction;
 
