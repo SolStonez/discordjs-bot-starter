@@ -20,135 +20,135 @@ process.on('unhandledRejection', error => {
 clientDC.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	// const connection = new Web3.Connection(
-	// 	process.env.MAIN_RPC,
-	// 	'confirmed');
+	const connection = new Web3.Connection(
+		process.env.MAIN_RPC,
+		'confirmed');
 
 	const { commandName } = interaction;
 
-	if (commandName === 'rank') {
+	// if (commandName === 'rank') {
 
 
-		await interaction.deferReply()
+	// 	await interaction.deferReply()
 
-		const id = (interaction.options.getNumber('id'))
+	// 	const id = (interaction.options.getNumber('id'))
 
-		if (id > 9999 || id < 0) {
-			interaction.editReply("There are only 9,999 NFTs in this collection")
-			return
-		}
-
-
-		const findrank = {
-			method: "get",
-			url: `https://moonrank.app/mints/${interaction.options.getString('collection')}`,
-			headers: {}
-
-		}
+	// 	if (id > 9999 || id < 0) {
+	// 		interaction.editReply("There are only 9,999 NFTs in this collection")
+	// 		return
+	// 	}
 
 
+	// 	const findrank = {
+	// 		method: "get",
+	// 		url: `https://moonrank.app/mints/${interaction.options.getString('collection')}`,
+	// 		headers: {}
 
-		const response = await axios(findrank)
-
-		if (response.status !== 200) {
-
-			await interaction.editReply("something went wrong.");
-			return
-
-		}
-
-		const nft = await response.data.mints.find(item => item.name === ` Legion of Sol #${id}`)
+	// 	}
 
 
 
-		const nftEmbed = new EmbedBuilder()
-			.setColor('0x0099ff')
-			.setTitle(`Legion of Sol #${id}`)
-			.setURL(`https://moonrank.app/collection/${interaction.options.getString('collection')}/${nft.mint}`)
-			.setDescription(`Rank: ${nft.rank}/9999`)
-			.setImage(nft.image)
-			.addFields(
-				{
-					name: 'Mint',
-					value: '`' + nft.mint + '`',
-					// url: `https://solscan.io/token/${nft.mint}`,
-					inline: false,
-				},
-				{
-					name: 'Elite',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Elite').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Elite').value : 'None',
-					inline: true
-				},
-				{
-					name: 'Skin',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Skin').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Skin').value : 'None',
-					inline: true
-				},
-				{
-					name: 'Background',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Background').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Background').value : 'None',
-					inline: true
-				},
-				{
-					name: 'Chest',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Chest').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Chest').value : 'None',
-					inline: true
-				},
-				{
-					name: 'Accessory',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Accessory').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Accessory').value : 'None',
-					inline: true
-				}, {
-				name: 'Eyes',
-				value: nft.rank_explain.find(atty => atty.attribute === 'Eyes').value !== ''
-					? nft.rank_explain.find(atty => atty.attribute === 'Eyes').value : 'None',
-				inline: true
-			},
-				{
-					name: 'Back',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Back').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Back').value : 'None',
-					inline: true
-				}, {
-				name: 'Face',
-				value: nft.rank_explain.find(atty => atty.attribute === 'Face').value !== ''
-					? nft.rank_explain.find(atty => atty.attribute === 'Face').value : 'None',
-				inline: true
-			},
-				{
-					name: 'Head',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Head').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Head').value : 'None',
-					inline: true
-				}, {
-				name: 'Base Horn Color',
-				value: nft.rank_explain.find(atty => atty.attribute === 'Base Horn Color').value !== ''
-					? nft.rank_explain.find(atty => atty.attribute === 'Base Horn Color').value : 'None',
-				inline: true
-			},
-				{
-					name: 'Piercing',
-					value: nft.rank_explain.find(atty => atty.attribute === 'Piercing').value !== ''
-						? nft.rank_explain.find(atty => atty.attribute === 'Piercing').value : 'None',
-					inline: true
-				}
-			)
-			.setFooter(
-				{
-					text: 'Made by Stonez * Ranks by MoonRank',
-					icon_url: 'https://gateway.pinata.cloud/ipfs/QmY9Bu1j2gvzmN8twJZv986fE1vc8PTVAf3xVdYzkCmjeq',
-				}
-			)
+	// 	const response = await axios(findrank)
 
-		await interaction.editReply({ embeds: [nftEmbed] });
+	// 	if (response.status !== 200) {
+
+	// 		await interaction.editReply("something went wrong.");
+	// 		return
+
+	// 	}
+
+	// 	const nft = await response.data.mints.find(item => item.name === ` Legion of Sol #${id}`)
 
 
-	}
+
+	// 	const nftEmbed = new EmbedBuilder()
+	// 		.setColor('0x0099ff')
+	// 		.setTitle(`Legion of Sol #${id}`)
+	// 		.setURL(`https://moonrank.app/collection/${interaction.options.getString('collection')}/${nft.mint}`)
+	// 		.setDescription(`Rank: ${nft.rank}/9999`)
+	// 		.setImage(nft.image)
+	// 		.addFields(
+	// 			{
+	// 				name: 'Mint',
+	// 				value: '`' + nft.mint + '`',
+	// 				// url: `https://solscan.io/token/${nft.mint}`,
+	// 				inline: false,
+	// 			},
+	// 			{
+	// 				name: 'Elite',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Elite').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Elite').value : 'None',
+	// 				inline: true
+	// 			},
+	// 			{
+	// 				name: 'Skin',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Skin').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Skin').value : 'None',
+	// 				inline: true
+	// 			},
+	// 			{
+	// 				name: 'Background',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Background').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Background').value : 'None',
+	// 				inline: true
+	// 			},
+	// 			{
+	// 				name: 'Chest',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Chest').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Chest').value : 'None',
+	// 				inline: true
+	// 			},
+	// 			{
+	// 				name: 'Accessory',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Accessory').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Accessory').value : 'None',
+	// 				inline: true
+	// 			}, {
+	// 			name: 'Eyes',
+	// 			value: nft.rank_explain.find(atty => atty.attribute === 'Eyes').value !== ''
+	// 				? nft.rank_explain.find(atty => atty.attribute === 'Eyes').value : 'None',
+	// 			inline: true
+	// 		},
+	// 			{
+	// 				name: 'Back',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Back').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Back').value : 'None',
+	// 				inline: true
+	// 			}, {
+	// 			name: 'Face',
+	// 			value: nft.rank_explain.find(atty => atty.attribute === 'Face').value !== ''
+	// 				? nft.rank_explain.find(atty => atty.attribute === 'Face').value : 'None',
+	// 			inline: true
+	// 		},
+	// 			{
+	// 				name: 'Head',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Head').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Head').value : 'None',
+	// 				inline: true
+	// 			}, {
+	// 			name: 'Base Horn Color',
+	// 			value: nft.rank_explain.find(atty => atty.attribute === 'Base Horn Color').value !== ''
+	// 				? nft.rank_explain.find(atty => atty.attribute === 'Base Horn Color').value : 'None',
+	// 			inline: true
+	// 		},
+	// 			{
+	// 				name: 'Piercing',
+	// 				value: nft.rank_explain.find(atty => atty.attribute === 'Piercing').value !== ''
+	// 					? nft.rank_explain.find(atty => atty.attribute === 'Piercing').value : 'None',
+	// 				inline: true
+	// 			}
+	// 		)
+	// 		.setFooter(
+	// 			{
+	// 				text: 'Made by Stonez * Ranks by MoonRank',
+	// 				icon_url: 'https://gateway.pinata.cloud/ipfs/QmY9Bu1j2gvzmN8twJZv986fE1vc8PTVAf3xVdYzkCmjeq',
+	// 			}
+	// 		)
+
+	// 	await interaction.editReply({ embeds: [nftEmbed] });
+
+
+	// }
 
 	// if (commandName === 'newwallet') {
 
@@ -622,20 +622,20 @@ clientDC.on('interactionCreate', async interaction => {
 
 	// }
 	
-	if (commandName === 'pfp'){
+	// if (commandName === 'pfp'){
 		
-		var user = (interaction.options.getUser('user'))
+	// 	var user = (interaction.options.getUser('user'))
 		
-		if(user === null) user = interaction.user
+	// 	if(user === null) user = interaction.user
 		
-		const avatarEmbed = new EmbedBuilder()
-			.setColor('0x0099ff')
-			.setAuthor({name: `${user.username}#${user.discriminator}`, iconURL: user.avatarURL()})
-			.setTitle(`Avatar`)
-			.setImage(user.displayAvatarURL({dynamic: true, size: 1024}))
+	// 	const avatarEmbed = new EmbedBuilder()
+	// 		.setColor('0x0099ff')
+	// 		.setAuthor({name: `${user.username}#${user.discriminator}`, iconURL: user.avatarURL()})
+	// 		.setTitle(`Avatar`)
+	// 		.setImage(user.displayAvatarURL({dynamic: true, size: 1024}))
 			
-		interaction.reply({embeds: [avatarEmbed]})
-	}
+	// 	interaction.reply({embeds: [avatarEmbed]})
+	// }
 	
 	
 
