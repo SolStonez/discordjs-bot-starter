@@ -20,9 +20,9 @@ process.on('unhandledRejection', error => {
 clientDC.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	const connection = new Web3.Connection(
-		process.env.MAIN_RPC,
-		'confirmed');
+	// const connection = new Web3.Connection(
+	// 	process.env.MAIN_RPC,
+	// 	'confirmed');
 
 	const { commandName } = interaction;
 
@@ -622,20 +622,34 @@ clientDC.on('interactionCreate', async interaction => {
 
 	// }
 	
-	// if (commandName === 'pfp'){
+	if (commandName === 'pfp'){
 		
-	// 	var user = (interaction.options.getUser('user'))
+		var user = (interaction.options.getUser('user'))
 		
-	// 	if(user === null) user = interaction.user
+		if(user === null) user = interaction.user
 		
-	// 	const avatarEmbed = new EmbedBuilder()
-	// 		.setColor('0x0099ff')
-	// 		.setAuthor({name: `${user.username}#${user.discriminator}`, iconURL: user.avatarURL()})
-	// 		.setTitle(`Avatar`)
-	// 		.setImage(user.displayAvatarURL({dynamic: true, size: 1024}))
+		let res = await axios.get(`https://discord.com/api/guilds/${interaction.guild.id}/members/${user.id}`, {
+			headers: {
+				Authorization: `Bot ${process.env.DISCORDJS_BOT_TOKEN}`
+			}
+		})
+		
+		var avatar = user.displayAvatarURL({dynamic: true, size: 1024})
+		
+		if(res.data.avatar !== undefined && res.data.avatar !== null){
 			
-	// 	interaction.reply({embeds: [avatarEmbed]})
-	// }
+		avatar = `https://cdn.discordapp.com/guilds/${interaction.guild.id}/users/${user.id}/avatars/${res.data.avatar}.webp?size=1024`
+			
+		}
+		
+		const avatarEmbed = new EmbedBuilder()
+			.setColor('0x0099ff')
+			.setAuthor({name: `${user.username}#${user.discriminator}`, iconURL: avatar})
+			.setTitle(`Avatar`)
+			.setImage(avatar)
+			
+		interaction.reply({embeds: [avatarEmbed]})
+	}
 	
 	
 

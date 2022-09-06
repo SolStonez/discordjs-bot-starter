@@ -3,40 +3,42 @@ const { REST } = require('@discordjs/rest');
 const dotenv = require('dotenv').config()
 
 const commands = [
-	new SlashCommandBuilder()
-		.setName('rank')
-		.setDescription('Sends info about a Legion NFT')
-		.addStringOption(option =>
-			option.setName('collection')
-				.setDescription('the collection to search under')
-				.setRequired(true)
-				.addChoices(
-					{ name: 'Legion of Sol', value: "legionofsol" }
-				))
-		.addNumberOption(option =>
-			option.setName('id')
-				.setDescription('The id to search for')
-				.setRequired(true)),
+	// new SlashCommandBuilder()
+	// 	.setName('rank')
+	// 	.setDescription('Sends info about a Legion NFT')
+	// 	.addStringOption(option =>
+	// 		option.setName('collection')
+	// 			.setDescription('the collection to search under')
+	// 			.setRequired(true)
+	// 			.addChoices(
+	// 				{ name: 'Legion of Sol', value: "legionofsol" }
+	// 			))
+	// 	.addNumberOption(option =>
+	// 		option.setName('id')
+	// 			.setDescription('The id to search for')
+	// 			.setRequired(true)),
 
-	new SlashCommandBuilder()
-		.setName('send')
-		.setDescription('Send SOL to a wallet address.')
-		.addStringOption(option =>
-			option.setName('address')
-				.setDescription('Address sending to.')
-				.setRequired(true))
-		.addNumberOption(option =>
-			option.setName('amount')
-				.setDescription('Amount of SOL to send')
-				.setRequired(true)),
+	// new SlashCommandBuilder()
+	// 	.setName('send')
+	// 	.setDescription('Send SOL to a wallet address.')
+	// 	.addStringOption(option =>
+	// 		option.setName('address')
+	// 			.setDescription('Address sending to.')
+	// 			.setRequired(true))
+	// 	.addNumberOption(option =>
+	// 		option.setName('amount')
+	// 			.setDescription('Amount of SOL to send')
+	// 			.setRequired(true)),
 
-	new SlashCommandBuilder()
-		.setName('balance')
-		.setDescription('Get you SOL balance'),
+	// new SlashCommandBuilder()
+	// 	.setName('balance')
+	// 	.setDescription('Get you SOL balance'),
 
-	new SlashCommandBuilder()
-		.setName('coinflip')
-		.setDescription('Flip a coin, double or nothing.'),
+	// new SlashCommandBuilder()
+	// 	.setName('coinflip')
+	// 	.setDescription('Flip a coin, double or nothing.'),
+		
+	// new SlashCommandBuilder().setName('newwallet').setDescription('create a new wallet'),
 		
 	new SlashCommandBuilder()
 		.setName('pfp')
@@ -47,7 +49,7 @@ const commands = [
 			.setRequired(false)),
 
 
-	new SlashCommandBuilder().setName('newwallet').setDescription('create a new wallet')
+	
 ]
 	.map(command => command.toJSON());
 
