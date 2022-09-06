@@ -47,12 +47,12 @@ const commands = [
 			.setRequired(false)),
 
 
-	new SlashCommandBuilder().setName('newwallet').setDescription('create a new wallet')
+	// new SlashCommandBuilder().setName('newwallet').setDescription('create a new wallet')
 ]
 	.map(command => command.toJSON());
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORDJS_BOT_TOKEN);
 
-rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands })
+rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, '958409351834529802'), { body: commands })
 	.then((data) => console.log(`Successfully registered ${data.length} application commands.`))
 	.catch(console.error);
